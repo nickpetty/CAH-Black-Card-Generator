@@ -36,6 +36,13 @@
 	document.getElementById('content').onkeyup = draw;
 	document.getElementById('pick').onchange = updatePick;
 
+	logo = new Image();
+	logo.src = '/static/logoSmall.png';
+	logo.onload = function(){
+		ctx.drawImage(logo, 0, 380, 100, 80);
+		ctx.restore();
+	}
+
 	function draw() {
 		var lines = fragmentText(this.value, card.width * 0.9),
 			font_size = 40;

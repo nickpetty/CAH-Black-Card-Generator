@@ -35,6 +35,13 @@
 	ctx.font = "30px Helvetica";
 	ctx.fillStyle = 'white';
 
+	logo = new Image();
+	logo.src = '/static/logoSmall.png';
+	logo.onload = function(){
+		ctx.drawImage(logo, 0, 380, 100, 80);
+		ctx.restore();
+	}
+
 	var insult = '{{insult}}'
 
 	if (insult == '') {
