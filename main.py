@@ -18,16 +18,26 @@
 # Mobile format support
 
 from flask import Flask, render_template, request, redirect, Markup
+from flask.ext.basicauth import BasicAuth
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from random import randrange
+import json
 import re
+
+configFile = open('config')
+config = json.load(configFile)
 
 client = MongoClient()
 db = client.bcg
 dbCards = db.cards
 
 app = Flask(__name__)
+
+app.config['BASIC_AUTH_USERNAME'] = config['username']
+app.config['BASIC_AUTH_PASSWORD'] = config['password']
+
+basic_auth = BasicAuth(app)
 
 @app.route('/about')
 def test():
@@ -52,6 +62,7 @@ def card(postID=None):
 
 
 @app.route('/submit', methods=['GET','POST'])
+@basic_auth.required
 def insultSubmitForm():
 	if request.method == 'POST':
 		cardContent = request.form['content']
