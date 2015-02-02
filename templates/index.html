@@ -15,12 +15,26 @@
     <!-- Custom styles for this template -->
     <link href="/static/bootstrap/css/cover.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src='/static/js/card.js'></script>
     <script>
     function initialise() {
     var cardCanvas = document.getElementById("card");
     cardCanvas.addEventListener("mousedown", nextCard, false);}
-    function nextCard(event) {window.location.href='/random';}
+
+    function nextCard(event) {
+      //window.location.href='/random';}
+      var xmlhttp;
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "/random", true);
+      xmlhttp.send();
+      xmlhttp.onreadystatechange = function () {
+        var response = JSON.parse(xmlhttp.response);
+        //alert(response);
+        card(response.insult, response.pickNumber);
+      }
+    }
     </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -56,9 +70,9 @@
 
           <div class="inner cover">
           <canvas id="card" width='320' height='450'></canvas>
-          <script>card("{{ insult }}",'{{pickNumber}}');</script>
+          <script>card('','');</script>
             <p>Click to draw</p>
-            <p class="lead">For years, people have been disappearing all around us.  Some look to the skies and blame beings from other worlds.  But many are beginging to suspect creatures much closer (and dearer) to us than previously thought...</p>
+            <p class="lead">For years, people have been disappearing all around us.  Some look to the skies and blame beings from other worlds.  But many are begining to suspect creatures much closer (and dearer) to us than previously thought...</p>
             <!--<p class="lead">
               <a href="#" class="btn btn-lg btn-default">Learn more</a>
             </p>-->
@@ -66,7 +80,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <!-- <p>Site designed with <a href="http://getbootstrap.com">Bootstrap</a> - <a href='http://ihackeverything.com/'>Nicholas Petty</a></p>
+              <!-- <p>Site designed with <a href="http://getbootstrap.com">Bootstrap</a> - <a href='http://ihackeverything.com/'>Nicholas Petty</a></p>-->
             </div>
           </div>
 
@@ -76,7 +90,6 @@
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
   </body>
 </html>

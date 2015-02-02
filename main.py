@@ -52,7 +52,11 @@ def random():
 	count = db.cards.count()
 	rand = randrange(0,count)
 	record = db.cards.find().limit(-1).skip(rand).next()
-	return redirect('/card/' + str(record["_id"]))
+	#return redirect('/card/' + str(record["_id"]))
+	cardContent = dbCards.find_one({"_id":ObjectId(record["_id"])})
+	response = Markup('{"insult":"'+cardContent["content"]+'","pickNumber":"' + str(cardContent["pickNumber"]) +'"}')
+	return response
+
 
 @app.route('/card/<postID>')
 def card(postID=None):
