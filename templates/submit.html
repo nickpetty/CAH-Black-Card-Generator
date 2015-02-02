@@ -7,24 +7,31 @@
 </head>
 
 <body>
-	<a href='/'><h1 style='margin-left:30px;'>Cats Abduct Humans</h1></a>
+	<div id="navbarContainer">
+		<ul class="navbar">
+			<li><div id='CAHLogo'><a href='/'>Cats Abduct Humans</a></div></li>
+			<li><a href='/submit'>Submit a Card</a></li>
+			<li><a href='/about'>About</a></li>
+			<img src='/static/logoSmall.png' width="110" height="60" style="margin-top:275; margin-left:9px;" />
+		</ul>
+	</div>
 
-	<canvas id="card" width="320" height="450" style="border:1px solid #000000; border-radius: 25px; background: black; margin-left:20px; margin-bottom:20px;"></canvas>
-	<br>
+	<div class='cardContainer'>
+		<canvas id="card" width="320" height="450" style="background:black;"></canvas>
+		<br>
 
-	<form action="/submit" method="post">
+		<form id="userinput" action="/submit" method="post">
 
-	<p>Number of cards to draw: <input id="pick" name="pick" type='number' style='width:30px' value='1' min='1' />
-	<br>
+			<textarea type="textfield" id="content" name="content" value="" placeholder="Enter your obscene statement or question here!" cols="30" rows='5' maxlength="170" style="margin-top:15px; border-radius: 5px; font-size:20px;"></textarea>
+			<br>
 
-	<textarea type="textfield" id="content" name="content" value="" placeholder="Enter your obscene statement or question here!" cols="30" rows='5' maxlength="170" style="margin-top:15px; border-radius: 5px; font-size:20px;"></textarea>
-	<br>
+			<button type="button" onclick='document.getElementById("content").value=""; ctx.clearRect(0,0,card.width,card.height); document.getElementById("pick").value="1";'>Clear</button>
 
-	<button type="button" onclick='document.getElementById("content").value=""; ctx.clearRect(0,0,card.width,card.height); document.getElementById("pick").value="1";'>Clear</button>
-
-	<button type="submit">Submit</button>
-
-	</form>
+			<button type="submit">Submit</button>
+			
+			Number of cards to draw: <input id="pick" name="pick" type='number' style='width:30px' value='1' min='1' />	
+		</form>
+	</div>
 
 	<script>
 
@@ -33,21 +40,23 @@
 	ctx.font = "30px Helvetica";
 	ctx.fillStyle = 'white';
 
+
 	document.getElementById('content').onkeyup = draw;
 	document.getElementById('pick').onchange = updatePick;
 
-	logo = new Image();
-	logo.src = '/static/logoSmall.png';
-	logo.onload = function(){
-		ctx.drawImage(logo, 0, 380, 100, 80);
-		ctx.restore();
-	}
+	//logo = new Image();
+	//logo.src = '/static/logoSmall.png';
+	//logo.onload = function(){
+	//	ctx.drawImage(logo, 0, 380, 100, 80);
+	//	ctx.restore();
+	//}
 
 	function draw() {
 		var lines = fragmentText(this.value, card.width * 0.9),
 			font_size = 40;
 		ctx.save();
 		ctx.clearRect(0, 0, card.width, 385);
+
 		lines.forEach(function(line, i) {
 			ctx.textAlign = "left";
 			ctx.fillText(line, 20, (i + 1) * font_size);

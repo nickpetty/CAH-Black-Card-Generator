@@ -17,10 +17,11 @@
 # Future:
 # Mobile format support
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Markup
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from random import randrange
+import re
 
 client = MongoClient()
 db = client.bcg
@@ -43,7 +44,7 @@ def random():
 def card(postID=None):
 	cardContent = dbCards.find_one({"_id":ObjectId(postID)})
 	#print cardContent["pickNumber"]
-	return render_template('index.html', insult=cardContent["content"], pickNumber=cardContent["pickNumber"])
+	return render_template('index.html', insult=re.escape(Markup(cardContent["content"])), pickNumber=cardContent["pickNumber"])
 
 
 @app.route('/submit', methods=['GET','POST'])
