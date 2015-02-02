@@ -29,6 +29,10 @@ dbCards = db.cards
 
 app = Flask(__name__)
 
+@app.route('/about')
+def test():
+	return render_template('about.html')
+
 @app.route('/')
 def index():
 	return render_template('index.html', pickNumber=1)

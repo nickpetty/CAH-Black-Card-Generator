@@ -15,7 +15,13 @@
     <!-- Custom styles for this template -->
     <link href="/static/bootstrap/css/cover.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
-    
+    <script src='/static/js/card.js'></script>
+    <script>
+    function initialise() {
+    var cardCanvas = document.getElementById("card");
+    cardCanvas.addEventListener("mousedown", nextCard, false);}
+    function nextCard(event) {window.location.href='/random';}
+    </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,7 +30,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onLoad=initialise()>
 
     <div class="site-wrapper">
 
@@ -41,35 +47,25 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li><a href="/">Home</a></li>
-                  <li class="active"><a href="/submit">Submit</a></li>
-                  <li><a href="/about">About</a></li>
+                  <li><a href="/submit">Submit</a></li>
+                  <li class="active"><a href="/about">About</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <canvas id="card" width="320" height="450" style="background:black;"></canvas>
 
-            <form id="userinput" action="/submit" method="post">
+            <p class="lead">For years, people have been disappearing all around us.  Some look to the skies and blame beings from other worlds.  But many are beginging to suspect creatures much closer (and dearer) to us than previously suspected...</p>
 
-              <textarea type="textfield" id="content" name="content" value="" placeholder="Enter your obscene statement or question here!" cols="30" rows='5' maxlength="170" style="margin-top:15px; border-radius: 5px; font-size:20px; color:black;"></textarea>
-              <br>
+            <p class="lead">This webapp is to be used with the game <a href='http://cardsagainsthumanity.com/'>Cards Against Humanity</a>.  Either as a replacement for the black cards, or even in line with!  All card content is original and not of the cards found in the original Cards Against Humanity pack or Expansions.</p>
 
-              <button class="btn btn-sml btn-default" type="button" onclick='document.getElementById("content").value=""; ctx.clearRect(0,0,card.width,card.height); document.getElementById("pick").value="1";'>Clear</button>
-
-              <button class="btn btn-sml btn-default" type="submit">Submit</button>
-      
-              Cards to draw: <input id="pick" name="pick" type='number' style='width:30px; color:black;' value='1' min='1' /> 
-            </form>
-          
-            <p class="lead" style="margin-top:20px;">Quick!  Alert others to what to look for!  Spread the word!</p>
-
+            <p class="lead">For all inquires, please contact Nicholas Petty.  Email: nick (that symbol that looks like an 'a') ihackeverything () com.
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <!-- <p>Site designed with <a href="http://getbootstrap.com">Bootstrap</a> - <a href='http://ihackeverything.com/'>Nicholas Petty</a></p>-->
+              <!-- <p>Site designed with <a href="http://getbootstrap.com">Bootstrap</a> - <a href='http://ihackeverything.com/'>Nicholas Petty</a></p>
             </div>
           </div>
 
@@ -78,7 +74,7 @@
       </div>
 
     </div>
-    <script src='/static/js/submit.js'></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
   </body>

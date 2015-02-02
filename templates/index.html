@@ -1,42 +1,82 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<head>
-	<meta charset="utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="/static/style.css">
-	<script src='/static/js/card.js'></script>
-	<script>
-	function initialise() {
-		var cardCanvas = document.getElementById("card");
-		cardCanvas.addEventListener("mousedown", nextCard, false);}
-	function nextCard(event) {window.location.href='/random';}
-	</script>
+    <title>Cats Abduct Humans</title>
 
-	<title>Black Card Generator</title>
-</head>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<body onLoad=initialise()>
-	<div id="navbarContainer">
-		<ul class="navbar">
-			<li><div id='CAHLogo'><a href='/'>Cats Abduct Humans</a></div></li>
-			<li><a href='/submit'>Submit a Card</a></li>
-			<li><a href='/about'>About</a></li>
-		</ul>
-		<img src='/static/logoSmall.png' width="110" height="60" style="margin-top:275; margin-left:9px;" />
-	</div>
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/cover.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src='/static/js/card.js'></script>
+    <script>
+    function initialise() {
+    var cardCanvas = document.getElementById("card");
+    cardCanvas.addEventListener("mousedown", nextCard, false);}
+    function nextCard(event) {window.location.href='/random';}
+    </script>
 
-	<div class='cardContainer'>
-		<canvas id="card" width='320' height='450'></canvas>
-	</div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-	<script>card("{{ insult }}",'{{pickNumber}}');</script>
+  <body onLoad=initialise()>
 
-</body>
+    <div class="site-wrapper">
 
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+
+              <img class="masthead-brand" src='/static/logoSmall.png' width="110" height="60" />           
+              <a href='/'><h3 class="masthead-brand"></h3></a>
+ 
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Home</a></li>
+                  <li><a href="/submit">Submit</a></li>
+                  <li><a href="/about">About</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+          <canvas id="card" width='320' height='450'></canvas>
+          <script>card("{{ insult }}",'{{pickNumber}}');</script>
+            <p>Click to draw</p>
+            <p class="lead">For years, people have been disappearing all around us.  Some look to the skies and blame beings from other worlds.  But many are beginging to suspect creatures much closer (and dearer) to us than previously suspected...</p>
+            <!--<p class="lead">
+              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+            </p>-->
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <!-- <p>Site designed with <a href="http://getbootstrap.com">Bootstrap</a> - <a href='http://ihackeverything.com/'>Nicholas Petty</a></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>
-
-
-
-
-
-
